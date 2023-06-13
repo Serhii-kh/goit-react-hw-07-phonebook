@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+// import { createAsyncThunk } from '@reduxjs/toolkit';
 import { initialState } from './initialState';
 import { CONTACTS } from './constants';
 
