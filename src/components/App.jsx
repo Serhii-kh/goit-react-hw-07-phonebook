@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { ContactForm } from './ContactForm/ContactForm';
 import { ContactsList } from './ContactsList/ContactsList';
 import { Filter } from './Filter/Filter';
@@ -12,6 +13,11 @@ export const App = () => {
 	const contacts = useSelector(getContacts);
 	const filterValue = useSelector(getFilterValue);
 	const dispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch(fetchContacts())
+	}, [dispatch])
+	
 
 	const changeFilter = e => {
 		const { value } = e.currentTarget;
@@ -28,7 +34,7 @@ export const App = () => {
 	};
 
 	const filteredContacts = getFilteredContacts();
-	fetchContacts()
+	// fetchContacts();
 
 	return (
 		<div className={css.phonebook}>
