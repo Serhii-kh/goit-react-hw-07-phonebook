@@ -4,3 +4,11 @@ export const initialState = [
   { id: 'Ixshhxsx', name: 'Goreaed Sousc', number: '696-17-87' },
   { id: 'Loxhusgg', name: 'Anjeron Kostoonind', number: '288-66-86' },
 ];
+
+
+// contacts: {
+//     items: [],
+//     isLoading: false,
+//     error: null
+//   },
+//   filter: ""
