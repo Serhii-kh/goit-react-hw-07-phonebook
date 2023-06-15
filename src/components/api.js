@@ -16,6 +16,8 @@ export const fetchContacts = createAsyncThunk(
   }
 );
 
+
+
 // export const postContact = async contact => {
 //   try {
 //     await axios.post(contact);

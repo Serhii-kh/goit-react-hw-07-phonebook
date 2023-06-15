@@ -18,6 +18,7 @@ export const App = () => {
 		dispatch(fetchContacts())
 	}, [dispatch])
 	
+console.log(contacts)
 
 	const changeFilter = e => {
 		const { value } = e.currentTarget;
