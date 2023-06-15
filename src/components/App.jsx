@@ -4,7 +4,7 @@ import { ContactsList } from './ContactsList/ContactsList';
 import { Filter } from './Filter/Filter';
 import { useDispatch, useSelector } from 'react-redux';
 import { addFilterText } from 'redux/FilterSlice';
-import { getContacts } from 'redux/ContactsListSlice';
+import { getContacts, getError, getIsLoading } from 'redux/ContactsListSlice';
 import { getFilterValue } from 'redux/FilterSlice';
 import { fetchContacts } from './api';
 import css from '../components/wrapper/wrapper.module.css';
@@ -12,6 +12,8 @@ import css from '../components/wrapper/wrapper.module.css';
 export const App = () => {
 	const contacts = useSelector(getContacts);
 	const filterValue = useSelector(getFilterValue);
+	const isLoading = useSelector(getIsLoading);
+	const error = useSelector(getError);
 	const dispatch = useDispatch();
 
 	useEffect(() => {
@@ -43,7 +45,8 @@ console.log(contacts)
 			<ContactForm />
 			<h2>Contacts</h2>
 			<Filter changeFilter={changeFilter} />
-			<ContactsList contacts={filteredContacts} />
+			{contacts.length > 0 ? <ContactsList contacts={filteredContacts} /> : <h3>{error}</h3>}
+			{isLoading && <h3>Loading...</h3>}
 		</div>
 	);
 };
