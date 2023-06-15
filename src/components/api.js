@@ -17,20 +17,21 @@ export const fetchContacts = createAsyncThunk(
   }
 );
 
+export const postContact = async contact => {
+  try {
+    await axios.post(contact);
+  } catch (error) {
+    console.log(error);
+  }
+};
 
+export const deleteContactById = async contact => {
+  try {
+		await axios.delete(contact);
+		
+			fetchContacts()
+  } catch (error) {
+    console.log(error);
+	}
 
-// export const postContact = async contact => {
-//   try {
-//     await axios.post(contact);
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-
-// export const deleteContact = async contact => {
-//   try {
-//     await axios.delete(contact);
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
+};
