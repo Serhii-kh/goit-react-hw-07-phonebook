@@ -22,14 +22,14 @@ export const ContactsListSlice = createSlice({
     },
   },
 
-  reducers: {
-    addContact(state, { payload }) {
-      state.push(payload);
-    },
-    deleteContact(state, { payload }) {
-      return state.filter(contact => contact.id !== payload);
-    },
-  },
+  // reducers: {
+  //   addContact(state, { payload }) {
+  //     state.push(payload);
+  //   },
+  //   deleteContact(state, { payload }) {
+  //     return state.filter(contact => contact.id !== payload);
+  //   },
+  // },
 });
 
 export const contactReducer = ContactsListSlice.reducer;
@@ -37,4 +37,4 @@ export const getContacts = state => state.contacts.items;
 export const getIsLoading = state => state.contacts.isLoading;
 export const getError = state => state.contacts.error
 
-export const {addContact, deleteContact} = ContactsListSlice.actions
+// export const {addContact, deleteContact} = ContactsListSlice.actions

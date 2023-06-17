@@ -1,15 +1,15 @@
-import { useDispatch, useSelector} from 'react-redux';
+import {  useSelector } from 'react-redux';
 import { useState } from 'react';
 import { postContact } from 'components/api';
 import shortid from 'shortid';
 import css from '../ContactForm/ContactForm.module.css';
-// import { addContact } from 'redux/ContactsListSlice';
+import { getContacts } from 'redux/ContactsListSlice';
 
 export const ContactForm = () => {
 	const [name, setName] = useState('');
 	const [number, setNumber] = useState('');
-	const dispatch = useDispatch();
-	const contacts = useSelector(state => state.contacts.items);
+	// const dispatch = useDispatch();
+	const contacts = useSelector(getContacts);
 
 	const handleChange = e => {
 		const { name, value } = e.currentTarget;
@@ -29,8 +29,8 @@ export const ContactForm = () => {
 		) {
 			alert(`${name} is already in contacts!`);
 		} else {
-			dispatch(postContact({ id, name, number }));
-			console.log({id})
+			postContact({ id, name, number });
+			console.log({ id })
 		}
 
 		setName('');
