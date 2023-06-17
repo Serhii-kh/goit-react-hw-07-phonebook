@@ -37,7 +37,6 @@ export const App = () => {
 	};
 
 	const filteredContacts = getFilteredContacts();
-	// fetchContacts();
 
 	return (
 		<div className={css.phonebook}>

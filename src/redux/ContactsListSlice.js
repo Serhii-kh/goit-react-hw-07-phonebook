@@ -1,11 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { initialState } from './initialState';
 import { CONTACTS } from './constants';
-import { fetchContacts } from 'components/api';
+import { fetchContacts,postContact, deleteContactById } from 'components/api';
 
 export const ContactsListSlice = createSlice({
   name: CONTACTS,
   initialState,
+
+//  reducers: {
+//     addContact(state, {payload}) {
+//       state.items.push(payload);
+//     },
+//     deleteContact(state, {payload}) {
+// 			return state.filter(contact => contact.id !== payload)
+//     },
+//   },
 
   extraReducers: {
     [fetchContacts.pending](state) {
@@ -19,6 +28,20 @@ export const ContactsListSlice = createSlice({
     [fetchContacts.rejected](state, { payload }) {
       state.isLoading = false;
       state.error = payload;
+		},
+		[postContact.fulfilled](state, { payload }) {
+      state.isLoading = false;
+      state.error = null;
+      state.items.push(payload);
+		},
+		[deleteContactById.fulfilled](state, { payload }) {
+      state.isLoading = false;
+      state.error = null;
+      state.items.filter(contact => contact.id !== payload);
+		},
+			[deleteContactById.rejected](state, { payload }) {
+				state.isLoading = false;
+				state.error = payload;
     },
   },
 

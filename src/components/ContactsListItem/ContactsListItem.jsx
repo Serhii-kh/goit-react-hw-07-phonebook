@@ -1,10 +1,10 @@
 import css from '../ContactsListItem/ContactsListItem.module.css'
 import PropTypes from 'prop-types';
 
-export const ContactsListItem = ({ name, number, children }) =>
+export const ContactsListItem = ({ name, phone, children }) =>
 (<li className={css.ContactsListItem} >
 	<p>
-		{name} : {number}
+		{name} : {phone}
 	</p>
 	{children}
 </li>)
