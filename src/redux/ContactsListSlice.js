@@ -7,15 +7,6 @@ export const ContactsListSlice = createSlice({
   name: CONTACTS,
   initialState,
 
-//  reducers: {
-//     addContact(state, {payload}) {
-//       state.items.push(payload);
-//     },
-//     deleteContact(state, {payload}) {
-// 			return state.filter(contact => contact.id !== payload)
-//     },
-//   },
-
   extraReducers: {
     [fetchContacts.pending](state) {
       state.isLoading = true;
@@ -29,11 +20,21 @@ export const ContactsListSlice = createSlice({
       state.isLoading = false;
       state.error = payload;
 		},
+		 [postContact.pending](state) {
+      state.isLoading = true;
+    },
 		[postContact.fulfilled](state, { payload }) {
       state.isLoading = false;
       state.error = null;
       state.items.push(payload);
 		},
+		 [postContact.rejected](state, { payload }) {
+      state.isLoading = false;
+      state.error = payload;
+		},
+		  [deleteContactById.pending](state) {
+      state.isLoading = true;
+    },
 		[deleteContactById.fulfilled](state, { payload }) {
       state.isLoading = false;
       state.error = null;
@@ -44,20 +45,9 @@ export const ContactsListSlice = createSlice({
 				state.error = payload;
     },
   },
-
-  // reducers: {
-  //   addContact(state, { payload }) {
-  //     state.push(payload);
-  //   },
-  //   deleteContact(state, { payload }) {
-  //     return state.filter(contact => contact.id !== payload);
-  //   },
-  // },
 });
 
 export const contactReducer = ContactsListSlice.reducer;
 export const getContacts = state => state.contacts.items;
 export const getIsLoading = state => state.contacts.isLoading;
 export const getError = state => state.contacts.error
-
-// export const {addContact, deleteContact} = ContactsListSlice.actions
