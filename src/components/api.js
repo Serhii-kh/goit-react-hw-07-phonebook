@@ -5,7 +5,7 @@ axios.defaults.baseURL = 'https://6488c5720e2469c038fe5586.mockapi.io/contacts';
 
 export const fetchContacts = createAsyncThunk(
   'contacts/fetchAll',
-  async (_, {rejectWithValue}) => {
+  async (_, { rejectWithValue }) => {
     try {
       const { data } = await axios();
       // console.log(data);
@@ -19,29 +19,29 @@ export const fetchContacts = createAsyncThunk(
 
 export const postContact = createAsyncThunk(
   'contacts/addContact',
-	async (contact, thunkAPI) => {
-		try {
-			const { data } = await axios.post('', { contact } );
-			// console.log(data.contact)
-			// console.log(data)
-			return data.contact
-		} catch (e) {
-			console.log(e);
-			return thunkAPI.rejectWithValue(e.message);
-		}
-	}
-);
-
-export const deleteContactById = createAsyncThunk(
-	'contacts/deleteContact',
-	async (contactId, thunkAPI) => {
-		try {
-			const {data} = await axios.delete(`/${contactId}`)
-			// console.log(data)
-			return data
-		} catch (e) {
+  async (contact, thunkAPI) => {
+    try {
+      const { data } = await axios.post('', contact);
+      // console.log(data.contact)
+      // console.log(data)
+      return data;
+    } catch (e) {
       console.log(e);
       return thunkAPI.rejectWithValue(e.message);
     }
-	}
-)
+  }
+);
+
+export const deleteContactById = createAsyncThunk(
+  'contacts/deleteContact',
+  async (contactId, thunkAPI) => {
+    try {
+      const { data } = await axios.delete(`/${contactId}`);
+      // console.log(data)
+      return data;
+    } catch (e) {
+      console.log(e);
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
